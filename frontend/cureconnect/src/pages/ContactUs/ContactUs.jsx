@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LandingNavbar from "../Landing/LandingNavbar";
 import Footer from "../Landing/Footer";
 import { useNavigate } from "react-router-dom";
+import ContactImage from "../../assets/contactus2.png"
 
 function ContactUs() {
   const initialvalues = { name: "", email: "", subject: "", message: "" };
@@ -85,7 +86,7 @@ function ContactUs() {
         <div className=" flex-1 flex flex-col h-full w-full lg:flex-row">
           <div className="flex justify-center items-center basis-2/5 lg:basis-3/5 max-w-full max-h-full">
             <img
-              src="..\src\assets\contactus2.png"
+              src={ContactImage}
               alt="Contact Us Image"
               className="max-w-[350px] max-h-[350px] lg:max-w-[550px] lg:max-h-[550px] "
             />
