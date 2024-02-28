@@ -100,7 +100,7 @@ function ContactUs() {
                   </h2>
                 </div>
 
-                <div className="mx-auto w-full max-w-sm">
+                <form onSubmit={handleSubmit} className="mx-auto w-full max-w-sm">
                   {/* name ----------------------------------------------------------------------------------------------*/}
                   <div className="py-2">
                     <label
@@ -217,13 +217,13 @@ function ContactUs() {
                   {/* button ----------------------------------------------------------------------------------------------*/}
                   <div className="py-2 mt-3 flex justify-center">
                     <button
-                      onClick={handleSubmit}
+                      // onClick={handleSubmit}
                       className=" flex w-5/6 justify-center rounded-full bg-secondaryColor px-4.5 py-2 text-xl font-semibold text-white shadow-sm hover:bg-black"
                     >
                       Submit
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>

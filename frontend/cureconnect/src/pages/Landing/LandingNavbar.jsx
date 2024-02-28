@@ -70,7 +70,7 @@ function LandingNavbar({location}) {
         }
       >
         <div className=" flex justify-between items-center my-2 p-4 gap-2">
-          <div className=" w-60 p-4">
+          <div className="w-40 sm:w-60 p-4">
             <img src={Logo3} alt="" />
           </div>
           <AiOutlineClose size={20} onClick={handleMenuVisibility} />
