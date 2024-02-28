@@ -11,6 +11,7 @@ function LandingNavbar({location}) {
   const navigate = useNavigate();
 
   const handleMenuVisibility = () => {
+    console.log("clicked me")
     setSmallNav(!smallNav);
   };
 
@@ -26,7 +27,7 @@ function LandingNavbar({location}) {
 
   return (
     <div className="flex md:mx-20 lg:mx-40 mx-5 px-3 justify-between items-center h-24 max-w-[1240px] text-white">
-      <div className=" w-60 p-4">
+      <div className=" w-36 md:w-60 p-4">
         <img src={Logo} alt="" />
       </div>
       <ul className="hidden md:flex text-lg text-backgroundColor font-bold hover:cursor-pointer">
@@ -44,7 +45,7 @@ function LandingNavbar({location}) {
             handleRouting("contact");
           }}
         >
-          Contant Us
+          Contact Us
         </li>
         <li
           className={`text-${location!=="faq" ? 'secondaryColor':'backgroundColor'} p-4 hover:scale-110 ease-in-out duration-150 hover:text-backgroundColor `}
@@ -56,10 +57,10 @@ function LandingNavbar({location}) {
         </li>
       </ul>
       <div
-        onClick={handleMenuVisibility}
-        className="block md:hidden text-secondaryColor"
+        onClick={()=>handleMenuVisibility()}
+        className="block md:hidden text-secondaryColor z-20"
       >
-        {smallNav ? <></> : <AiOutlineMenu size={20} />}
+        {smallNav ?  null: <AiOutlineMenu size={20} />}
       </div>
       <ul
         className={
@@ -88,7 +89,7 @@ function LandingNavbar({location}) {
             handleRouting("contact");
           }}
         >
-          Contant Us
+          Contact Us
         </li>
         <li
           className="p-4  text-backgroundColor hover:bg-backgroundColor hover:text-secondaryColor hover:cursor-pointer"
