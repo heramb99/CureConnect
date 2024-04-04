@@ -68,14 +68,14 @@ function AddAppointmentModal({ showDialog, handleShowDialog ,onAddAppointment,ap
 
 useEffect(() => {
     const currentTime = new Date();
-    const currentDay = currentTime.getDay();
+    const currentDay = currentTime.getDate();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
     const cleanSlots=new Array(24).fill({ isValid: true, isSelected: false })
 
       const newTimeSlotInfo = cleanSlots.map((info, index) => {
         const [startHour, startMinute] = timeslots[index].split(' ')[0].split(':').map(Number);
-        if (currentDay === selectedDate.getDay() && (currentHour > startHour || (currentHour === startHour && currentMinute > startMinute))) {
+        if (currentDay === selectedDate.getDate() && (currentHour > startHour || (currentHour === startHour && currentMinute > startMinute))) {
           return { ...info, isValid: false };
         }
         return info;

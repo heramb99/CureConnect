@@ -32,17 +32,41 @@ public class DoctorService {
     @Autowired
     AppointmentService appointmentService;
 
+    /**
+     * A description of the entire Java function.
+     *
+     * @param  doctor	description of parameter
+     * @return         	description of return value
+     */
     public Doctor registerDoctor(Doctor doctor) {
         return doctorRepository.save(doctor);
     }
 
+    /**
+     * Retrieves all approved doctors from the doctor repository.
+     *
+     * @return         	list of approved doctors
+     */
     public List<Doctor> getAllApprovedDoctors() {
         return doctorRepository.findByApprovedTrue();
     }
 
+    /**
+     * Finds a doctor by their ID.
+     *
+     * @param  id   the ID of the doctor to find
+     * @return      the doctor with the specified ID
+     */
     public Doctor findById(String id) {
         return doctorRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No doctor found with ID: " + id));
     }
+
+    /**
+     * Retrieves the list of attended patients for a given doctor.
+     *
+     * @param  doctorId  The ID of the doctor
+     * @return          ResponseEntity with the list of attended patients
+     */
     public ResponseEntity getPatients(String doctorId){
         List<Appointment> appointments = appointmentService.getAppointmentsByDoctor(doctorId);
         List<AttendedPatients> attendedPatients = new LinkedList<>();
@@ -61,6 +85,14 @@ public class DoctorService {
         }
         return ResponseEntity.ok(attendedPatients);
     }
+
+    /**
+     * Retrieves a list of future and past appointments for a given doctor and patient.
+     *
+     * @param  doctorId   the ID of the doctor
+     * @param  patientId  the ID of the patient
+     * @return            the ResponseEntity containing the patient's appointments
+     */
     public ResponseEntity getPatientsAppointments(String doctorId, String patientId){
         GetPatientAppointments getPatientAppointments = new GetPatientAppointments();
         List<PatientAppointment> futureAppointments = appointmentService.getFutureAppointmentsByDoctorIdAndPatientId(doctorId,patientId)
@@ -71,9 +103,21 @@ public class DoctorService {
         getPatientAppointments.setPastAppointments(pastAppointments);
         return ResponseEntity.ok(getPatientAppointments);
     }
+
+    /**
+     * Retrieves a list of Doctor users by calling the findAll method in the doctorRepository.
+     *
+     * @return         The list of Doctor users
+     */
     public List<Doctor> getDoctorUsers(){
         return doctorRepository.findAll();
     }
+
+    /**
+     * Retrieves a list of Doctor users by calling the findAll method in the doctorRepository.
+     *
+     * @return         The list of Doctor users
+     */
     public static int calculateAgeInYears(Date birthDate) {
         Date currentDate = new Date();
         int age = currentDate.getYear() - birthDate.getYear();
@@ -85,6 +129,13 @@ public class DoctorService {
     public List<Doctor> getDoctorUsersByApprovalStatus(boolean approved){
         return doctorRepository.findDoctorsByApproved(approved);
     }
+
+    /**
+     * A description of the entire Java function.
+     *
+     * @param  id  description of parameter
+     * @return          description of return value
+     */
     public ResponseEntity approveUser(String id){
         ResponseEntity response = null;
         Optional<Doctor> optionalUsers = doctorRepository.findDoctorByIdIs(id);

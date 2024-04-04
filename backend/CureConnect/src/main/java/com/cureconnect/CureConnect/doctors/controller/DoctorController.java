@@ -23,6 +23,12 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
 
+    /**
+     * A method to register a doctor with the given information.
+     *
+     * @param  doctor	The doctor object to be registered
+     * @return         	The ResponseEntity containing the registered doctor
+     */
     @PostMapping("/register")
     @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity<Doctor> register(@RequestBody Doctor doctor) {
@@ -31,6 +37,11 @@ public class DoctorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDoctor);
     }
 
+    /**
+     * A function that retrieves all approved doctors accessible to patients or doctors.
+     *
+     * @return         list of approved doctors
+     */
     @GetMapping("/getAllApprovedDoctors")
     @PreAuthorize("hasAuthority('ROLE:PATIENT') or hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity<List<Doctor>> getAllApprovedDoctors() {
@@ -38,18 +49,37 @@ public class DoctorController {
         return ResponseEntity.status(HttpStatus.OK).body(doctorList);
     }
 
+    /**
+     * Retrieves a specific Doctor based on the provided doctorId.
+     *
+     * @param  doctorId  the ID of the doctor to retrieve
+     * @return          the ResponseEntity containing the Doctor object
+     */
     @GetMapping("/getDoctor/{doctorId}")
     public ResponseEntity<Doctor> getDoctor(@PathVariable String doctorId) {
         Doctor doctor = doctorService.findById(doctorId);
         return ResponseEntity.status(HttpStatus.OK).body(doctor);
     }
 
+    /**
+     * A description of the entire Java function.
+     *
+     * @param  jwt     description of parameter
+     * @return         description of return value
+     */
     @GetMapping("/patients")
     @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity getPatients(@AuthenticationPrincipal Jwt jwt) {
         return doctorService.getPatients(jwt.getSubject());
     }
 
+    /**
+     * A description of the entire Java function.
+     *
+     * @param  jwt    description of parameter
+     * @param  patientId    description of parameter
+     * @return          description of return value
+     */
     @GetMapping("/patients/{patientId}/appointments")
     @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity getPatientsAppointments(@AuthenticationPrincipal Jwt jwt, @PathVariable String patientId) {

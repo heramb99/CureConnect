@@ -114,11 +114,11 @@ function AppointmentManagement() {
 
   const loadUpcomingAppointments = (appointments) =>{
     const currentTime = new Date();
-    const currentDay = currentTime.getDay();
+    const currentDay = currentTime.getDate();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
     const upcomingAppointments = appointments.filter((appointment) => {
-      const eventDayDate = new Date(appointment.start).getDay();
+      const eventDayDate = new Date(appointment.start).getDate();
       const eventHour = new Date(appointment.start).getHours();
       const eventMinute = new Date(appointment.start).getMinutes();
 
@@ -130,7 +130,7 @@ function AppointmentManagement() {
             appointment.booked === true
           )
       );
-    });
+    }).sort((a, b) => new Date(a.start) - new Date(b.start));;
     setUpcomingAppointments(upcomingAppointments);
   }
 

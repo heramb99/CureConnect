@@ -148,10 +148,10 @@ export const Search = () => {
                     key={index}
                     className="flex flex-col items-center md:items-stretch gap-2 md:flex-row w-full mb-5 rounded-lg bg-whiteColor border border-secondaryColor p-4 hover:scale-105 transition duration-200"
                   >
-                    <div className="border-2 w-40 h-40 border-primaryColor rounded-md overflow-hidden md:basis-2/10">
+                    <div className="w-40 h-40 rounded-md overflow-hidden md:basis-2/10">
                       <img
                         src={item.profileUrl}
-                        className=" w-40 h-40 rounded-md object-cover"
+                        className=" w-40 h-40 rounded-md object-cover border-primaryColor border-2"
                       />
                       </div>
                     <div className="w-full mx-4 flex flex-col md:flex-row justify-between md:basis-4/10">

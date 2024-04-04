@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository for the {@link Appointment}
+ */
 @Repository
 public interface AppointmentRepository extends MongoRepository<Appointment, String> {
     public List<Appointment> findByDoctorId(String doctorId);
