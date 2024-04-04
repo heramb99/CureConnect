@@ -10,12 +10,7 @@ const TokenValidation = async (token) => {
       
     });
   
-    if (response.ok) {
-      console.log('Token validation successful');
-    } else {
-      console.error('Token validation failed:', response.status, response.statusText);
-    }
+    
   } catch (error) {
-    console.error('Error during token validation:', error);
   }
 };

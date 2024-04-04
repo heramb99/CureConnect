@@ -29,7 +29,6 @@ function PrescriptionList() {
     fetchAppointmentsData();
   }, []);
 
-  // console.log(appointmentsData);
 
   const [searchText, setSearchText] = useState("");
 

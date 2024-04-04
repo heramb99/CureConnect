@@ -19,7 +19,6 @@ async function registerUser(user){
         return data;
 
     } catch (error) {
-        console.log(error);
     }
 }
 
@@ -72,7 +71,6 @@ async function updateProfile(user, authToken){
             return data;
     
         } catch (error) {
-            console.log(error);
         }
     }
    

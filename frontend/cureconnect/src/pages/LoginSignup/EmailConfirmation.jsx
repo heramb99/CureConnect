@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './userProfileStyle.css';
+import '../../pages/css/userProfileStyle.css';
 import { ToastContainer, toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
@@ -54,7 +54,6 @@ export const EmailConfirmation = () => {
       }
 
     } catch (error) {
-      console.log(error);
 
       if (error.code === 'auth/invalid-email') {
         // Handle invalid credential error, e.g., show an error message to the user

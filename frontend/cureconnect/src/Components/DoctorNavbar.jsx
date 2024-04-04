@@ -21,7 +21,7 @@ function DoctorNavbar({ location }) {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/"); // Navigate to login page after logout
+    navigate("/",{replace:true}); // Navigate to login page after logout
   };
 
   const handleRouting = (key) => {
@@ -30,14 +30,18 @@ function DoctorNavbar({ location }) {
     } else if(key === "patients"){
       navigate(("/doctor/patients"))
     } else {
-      navigate("/");
+      navigate("/",{replace:true});
     }
+  };
+
+  const handleLogoClick = () => {
+    navigate("/");
   };
 
   return (
     <div className="flex px-3 justify-between items-center h-22 bg-secondaryColor text-white">
       <div className=" w-60 p-4">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={handleLogoClick}/>
       </div>
       <div className="flex items-center">
         <ul className="hidden md:flex gap-3 text-md text-backgroundColor font-bold hover:cursor-pointer">
@@ -80,7 +84,7 @@ function DoctorNavbar({ location }) {
               : " fixed left-[-100%] ease-in-out duration-500"
           }
         >
-          <div className=" flex justify-between items-center my-2 p-3 z-50">
+          <div className=" flex justify-between items-center my-2 p-3 z-20">
             <div className=" w-60 p-2">
               <img src={Logo3} alt="" />
             </div>
@@ -104,7 +108,8 @@ function DoctorNavbar({ location }) {
           </li>
         </ul>
         <div className="relative">
-          <img onClick={handleLogoutDropdown} className="w-10 h-10 p-1 m-3 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 hover:cursor-pointer" src={DefaultAvatar} alt="Bordered avatar" />
+          
+          {!smallNav && <img onClick={handleLogoutDropdown} className="w-10 h-10 p-1 m-3 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 hover:cursor-pointer" src={DefaultAvatar} alt="Bordered avatar" />}
           {showLogoutDropdown && (
             <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-10">
               <button

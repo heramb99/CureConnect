@@ -11,7 +11,6 @@ export const fetchAppointmentFromToday = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -25,7 +24,6 @@ export const fetchDoctorData = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -40,7 +38,6 @@ export const updateAppointment = async (data) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -53,7 +50,6 @@ export const fetchPastPrescriptionDataAPI = async (userId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }

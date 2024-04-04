@@ -11,7 +11,6 @@ export const getAllMedicines = async () => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -26,7 +25,6 @@ export const addDoctorPrescription = async (data) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }

@@ -23,10 +23,14 @@ function LandingNavbar({ location }) {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="flex md:mx-20 lg:mx-40 mx-5 px-3 justify-between items-center h-24 max-w-[1240px] text-white">
       <div className=" w-60 p-4">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={handleLogoClick}/>
       </div>
 
         <ul className="hidden md:flex text-lg text-backgroundColor font-bold hover:cursor-pointer">
@@ -63,9 +67,9 @@ function LandingNavbar({ location }) {
         </ul>
         <div
           onClick={handleMenuVisibility}
-          className="block md:hidden text-secondaryColor"
+          className="block md:hidden text-secondaryColor z-10"
         >
-          {smallNav ? <></> : <AiOutlineMenu size={20} />}
+          {smallNav ? <></> : <AiOutlineMenu size={20}  />}
         </div>
         <ul
           className={
@@ -74,7 +78,7 @@ function LandingNavbar({ location }) {
               : " fixed left-[-100%] ease-in-out duration-500"
           }
         >
-          <div className=" flex justify-between items-center my-2 p-4 gap-2 z-[1000]">
+          <div className=" flex justify-between items-center my-2 p-4 gap-2">
             <div className=" w-40 p-4">
               <img src={Logo3} alt="" />
             </div>

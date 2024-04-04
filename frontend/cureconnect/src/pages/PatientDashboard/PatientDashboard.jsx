@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeImage from '../../assets/patientDashboardIcons/AI-Waving.png';
-import './patientDashboard.css';
+import pregnant from '../../assets/patientDashboardIcons/pregnant.png';
+import skinIssues from "../../assets/patientDashboardIcons/skin-issues.png"
+import cold from "../../assets/patientDashboardIcons/cold.png"
+import child from "../../assets/patientDashboardIcons/child.png"
+import '../../pages/css/patientDashboard.css';
 import PatientNavbar from "../../Components/PatientNavbar";
 import PatientFooter from "../../Components/PatientFooter";
 import getBookingDetails from '../../service/userService';
@@ -38,7 +42,6 @@ export const PatientDashboard = () => {
             const userDataString = localStorage.getItem("userInfo");
 
             const userData = await JSON.parse(userDataString);
-            console.log("Patient Dashboard: ",userData,!userData, !userData.id, !userData.token, !userData.role, userData.role != 'patient')
 
             // Check if user is loged-in or not
             if (!userData || !userData.id || !userData.token || !userData.role || userData.role != 'patient') {
@@ -57,7 +60,6 @@ export const PatientDashboard = () => {
                 const pastAppointment = await findAppointment.findAppointment(userDetails, 'past');
 
                 const details = await getUserDetails.getUserDetails(formData.id, userData.token);
-                console.log(details);
 
                 if(userDetails.length >0){
                     setFormData((userName) => ({ ...userName, ["userName"]: userDetails[0].patientName }));
@@ -73,7 +75,6 @@ export const PatientDashboard = () => {
                             ["bookingEndTime"]: upcomingAppointment.endTime
                         }));
                     } else {
-                        console.log("No past appointments found.");
                     }
                     if (pastAppointment) {
                         setprevBookings((booking) => ({
@@ -83,7 +84,6 @@ export const PatientDashboard = () => {
                         }));
                   
                 } else {
-                    console.log("No past appointments found.");
                 }
             
             } catch (error) {
@@ -107,25 +107,25 @@ export const PatientDashboard = () => {
     const specialties = [
         {
             icon:
-                <img src="/src/assets/patientDashboardIcons/pregnant.png" alt="Period doubts or Pregnancy" className="w-8 h-8" />,
+                <img src={pregnant} alt="Period doubts or Pregnancy" className="w-8 h-8" />,
             title: 'Period doubts or Pregnancy',
             consultText: 'CONSULT NOW',
             path: '/patient/search',
         },
         {
-            icon: <img src="/src/assets/patientDashboardIcons/skin-issues.png" alt="Period doubts or Pregnancy" className="w-8 h-8" />,
+            icon: <img src={skinIssues} alt="Period doubts or Pregnancy" className="w-8 h-8" />,
             title: 'Acne, pimple or skin issues',
             consultText: 'CONSULT NOW',
             path: '/patient/search',
         },
         {
-            icon: <img src="/src/assets/patientDashboardIcons/cold.png" alt="Period doubts or Pregnancy" className="w-8 h-8" />,
+            icon: <img src={cold} alt="Period doubts or Pregnancy" className="w-8 h-8" />,
             title: 'Cold, cough or fever',
             consultText: 'CONSULT NOW',
             path: '/patient/search',
         },
         {
-            icon: <img src="/src/assets/patientDashboardIcons/child.png" alt="Period doubts or Pregnancy" className="w-8 h-8" />,
+            icon: <img src={child} alt="Period doubts or Pregnancy" className="w-8 h-8" />,
             title: 'Children not feeling well',
             consultText: 'CONSULT NOW',
             path: '/patient/search',

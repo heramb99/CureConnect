@@ -36,10 +36,14 @@ function AdminNavbar({ location }) {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="flex px-3 justify-between items-center h-22 bg-secondaryColor text-white">
       <div className=" w-60 p-4">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={handleLogoClick} />
       </div>
       <div className="flex items-center">
         <ul className="hidden md:flex gap-3 text-md text-backgroundColor font-bold hover:cursor-pointer">

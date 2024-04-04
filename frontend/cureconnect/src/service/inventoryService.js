@@ -11,7 +11,6 @@ export const fetchAllMedicine = async () => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -25,7 +24,6 @@ export const deleteMedicine = async (medicineId) => {
         });
         return true;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -39,7 +37,6 @@ export const addOrUpdateMedicine = async (data) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -53,7 +50,6 @@ export const updateInventoryAPI = async (data) => {
       });
       return res;
   } catch (err) {
-      console.log("Error updating inventory:", err);
       throw err; 
   }
 }
@@ -66,7 +62,6 @@ export const fetchInventoryAPI = async (data) => {
       });
       return res;
   } catch (err) {
-      console.log("Error getting inventory:", err);
       throw err; 
   }
   

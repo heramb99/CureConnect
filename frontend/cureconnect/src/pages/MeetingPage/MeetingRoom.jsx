@@ -8,7 +8,6 @@ function MeetingRoom() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const meetingDetails = state.meeting;
-  console.log(meetingDetails);
 
 
   const PatientMeeting = async (element) => {
@@ -35,7 +34,6 @@ function MeetingRoom() {
       showScreenSharingButton: false,
       onLeaveRoom: () => {
 
-        console.log("onLeaveRoom");
         navigate("/doctor/addPrescription", { state: { meetingDetails } });
       },
      })

@@ -8,7 +8,6 @@ function PaymentSuccessful() {
   const { medicines } = location.state;
   const navigate = useNavigate();
 
-  console.log(medicines);
 
   useEffect(() => {
 
@@ -19,7 +18,6 @@ function PaymentSuccessful() {
       }
     })
 
-    console.log(buyedMedicines);
 
     updateInventoryAPI(
         buyedMedicines
@@ -29,11 +27,9 @@ function PaymentSuccessful() {
             navigate("/");
           }, 3000);
         } else {
-          console.log("error while updating inventory");
         }
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 

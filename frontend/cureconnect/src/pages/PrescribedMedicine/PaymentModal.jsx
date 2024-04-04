@@ -16,7 +16,6 @@ const PaymentModal = ({ total, onClose, medicines }) => {
 
   const onToken = (token) => {
     navigate("/patient/prescriptionlist/prescribedmedicine/paymentsuccess", { state: { token, medicines } });
-    console.log(token);
   };
 
   return (

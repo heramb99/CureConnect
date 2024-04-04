@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactTyped } from "react-typed";
-import { useNavigate } from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 // Image Credits: https://www.freepik.com/free-vector/doctor-examining-patient-clinic-illustrated_12557507.htm
 import DoctorImage from "../../assets/landingImage.png"
@@ -10,11 +10,15 @@ function MainContent() {
   const navigate = useNavigate();
 
   const handleStart = async (e) => {
-    
     e.preventDefault();
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    navigate('/user/Login');
-
+    if(userInfo?.role !== undefined){
+      navigate("/dashboard");
+    }
+    else{
+      navigate("/user/Login");
+    }
   }
   return (
     <div className="flex justify-between lg:px-40 md:px-20 px-5">

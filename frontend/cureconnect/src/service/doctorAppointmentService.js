@@ -12,7 +12,6 @@ export const getEventsAPI = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -26,7 +25,6 @@ export const getEventsByDateAPI = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -40,7 +38,6 @@ export const getAppointmentCompleted = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -54,7 +51,6 @@ export const getPatientsTreated = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -68,7 +64,6 @@ export const getEarningForMonth = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -82,7 +77,6 @@ export const getTotalEarning = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -97,7 +91,6 @@ export const addDoctorAppointments = async (data) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }
@@ -111,7 +104,6 @@ export const deleteDoctorAppointment = async (doctorId) => {
         });
         return res;
     } catch (err) {
-        console.log("Error after bearer:", err);
         throw err; 
     }
 }

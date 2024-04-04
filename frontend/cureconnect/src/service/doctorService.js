@@ -20,7 +20,6 @@ async function registerDoctor(user, authToken){
         return data;
 
     } catch (error) {
-        console.log(error);
     }
 }
 
@@ -33,7 +32,6 @@ async function fetchDoctorDetails(doctorId, authToken) {
                 'Authorization': `Bearer ${authToken}`
             }
         });
-        console.log('Doctor Response:', response.data);	
         return response.data; // Returns the response body from the API
     } catch (error) {
         console.error('Error fetching doctor details:', error.response ? error.response.data : error.message);

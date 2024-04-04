@@ -98,15 +98,13 @@ function Calendar({ selectedDate, onDateChange }) {
   };
 
   const formatDate= (date) => {
-    const month = date.getMonth() + 1; // Month is zero-indexed
+    const month = date.getMonth() + 1; 
     const day = date.getDate();
     const year = date.getFullYear();
     
-    // Pad single digit month and day with leading zeros
     const formattedMonth = month < 10 ? `0${month}` : month;
     const formattedDay = day < 10 ? `0${day}` : day;
   
-    // Create a new Date object with formatted date
     return new Date(`${formattedMonth}/${formattedDay}/${year}`);
   }
 

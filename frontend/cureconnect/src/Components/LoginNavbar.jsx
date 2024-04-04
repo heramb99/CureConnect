@@ -11,7 +11,6 @@ function LoginNavBar({ location }) {
   const navigate = useNavigate();
 
   const handleMenuVisibility = () => {
-    console.log("clicked me")
     setSmallNav(!smallNav);
   };
 
@@ -25,10 +24,14 @@ function LoginNavBar({ location }) {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="flex md:mx-20 lg:mx-40 mx-5 px-3 justify-between items-center h-24 max-w-[1240px] text-black">
       <div className=" w-36 md:w-60 p-4">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={handleLogoClick} />
       </div>
       <ul className="hidden md:flex text-lg text-black font-bold hover:cursor-pointer">
         <li

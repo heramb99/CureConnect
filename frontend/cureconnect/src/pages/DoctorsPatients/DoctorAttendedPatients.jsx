@@ -15,7 +15,6 @@ function DoctorAttendedPatients() {
 
     useEffect(() => {
         getPatients().then((res) => {
-            console.log("Res:" + res);
             setpatientData(res);
             setfilteredPatients(res);
         });

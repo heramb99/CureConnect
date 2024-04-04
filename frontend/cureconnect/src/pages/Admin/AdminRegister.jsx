@@ -1,5 +1,5 @@
 import React from 'react';
-import '../LoginSignup/userProfileStyle.css'
+import '../../pages/css/userProfileStyle.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'
@@ -69,7 +69,6 @@ export const AdminRegister = () => {
         //  navigate('/user/profile');
   
       } catch (error) {
-          console.log(error);
       }
   };
   
@@ -134,7 +133,6 @@ export const AdminRegister = () => {
               storeUser(formData.id,token,formData.userRole);              
               
             } catch (error) {
-              console.log(error);
             }
         }catch (error) {
           console.error('Firebase authentication error:', error);

@@ -34,7 +34,6 @@ async function findAppointment(userDetails, appointmentType) {
         const formattedData = formatAppointmentData(nearestAppointment);
         return formattedData;
     } else {
-        console.log("No appointments found.");
         return null;
     }
 }

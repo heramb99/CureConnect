@@ -9,17 +9,15 @@ export const Search = () => {
 
   const [doctorDetails,setDoctorDetails] = useState([])
   const [arrDoctors,setArrDoctors] = useState([])
+  const [search,setSearch] = useState("")
+  const [gender,setGender] = useState("")
+  const [experience,setExperience] = useState(0)
   const navigate = useNavigate();
 
   const handleFilterChange = (event) => {
-    var gender = event.target.value;
-    if(gender==="Male" || gender ==="Female") {
-      console.log(gender);
-      setDoctorDetails(arrDoctors.filter(x=>x.gender===gender));
-  }
-  else {
-    setDoctorDetails(arrDoctors);
-  }
+  
+  handleChange(search,event.target.value,experience)
+  setGender(event.target.value)
   };
 
   useEffect(() => {
@@ -27,7 +25,6 @@ export const Search = () => {
       url: API_URL+"/api/v1/doctor/getAllApprovedDoctors",
       method: "GET",
      }).then((res) => {
-        console.log("doctors::",res);
     //   setDoctors(res);
       setDoctorDetails(res);
       setArrDoctors(res);
@@ -35,19 +32,36 @@ export const Search = () => {
   },[])
 
   const handleExperienceFilterChange = (event) => {
-    var experience = Number(event.target.value);
-    var expArr = arrDoctors.filter(x=>x.experience>=experience);
-    if(expArr.length===0) {
-      toast.error("No matching doctors found");
-    }
-
-      setDoctorDetails(arrDoctors.filter(x=>x.experience>=experience));
+    
+    handleChange(search,gender,Number(event.target.value))
+    setExperience(Number(event.target.value))
   };
 
   const handleWordSearch=(event)=>{
-    var word = event.target.value;
-    console.log("Array",arrDoctors);
-    setDoctorDetails(arrDoctors.filter(x=>x.userName.toLowerCase().includes(word.toLowerCase()) || x.specialization.toLowerCase().includes(word.toLowerCase())));
+    
+    handleChange(event.target.value,gender,experience)
+    setSearch(event.target.value)
+  }
+
+
+  const handleChange=(search,gender,experience)=>{
+    if(gender==="Male" || gender ==="Female") {
+      if(search==="") {
+      setDoctorDetails(arrDoctors.filter(x=>x.experience>=experience && x.gender==gender));
+      }
+      else {
+        setDoctorDetails(arrDoctors.filter(x=>x.experience>=experience && x.gender==gender && (x.userName.toLowerCase().includes(search.toLowerCase()) || x.specialization.toLowerCase().includes(search.toLowerCase()))));
+      }
+    }
+    else {
+      if(search ==="") {
+      setDoctorDetails(arrDoctors.filter(x=>x.experience>=experience));
+      }
+      else {
+        setDoctorDetails(arrDoctors.filter(x=>x.experience>=experience && (x.userName.toLowerCase().includes(search.toLowerCase()) || x.specialization.toLowerCase().includes(search.toLowerCase()))));
+      }
+    }
+    
   }
 
   const handleBookAppointment = (item) => {
@@ -127,21 +141,21 @@ export const Search = () => {
                 </div>
               </div>
             </div>
-            <div className=" w-4/5  flex flex-col">
+            <div className="w-full lg:w-4/5  flex flex-col">
               {doctorDetails.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col md:flex-row w-full mb-5 rounded-lg bg-whiteColor border border-secondaryColor p-4 hover:scale-105 transition duration-200"
+                    className="flex flex-col items-center md:items-stretch gap-2 md:flex-row w-full mb-5 rounded-lg bg-whiteColor border border-secondaryColor p-4 hover:scale-105 transition duration-200"
                   >
-                    <div className="border-2 border-primaryColor rounded-md overflow-hidden">
+                    <div className="border-2 w-40 h-40 border-primaryColor rounded-md overflow-hidden md:basis-2/10">
                       <img
                         src={item.profileUrl}
                         className=" w-40 h-40 rounded-md object-cover"
                       />
                       </div>
-                    <div className="w-full mx-4 flex flex-col md:flex-row justify-between">
-                      <div className="flex flex-col">
+                    <div className="w-full mx-4 flex flex-col md:flex-row justify-between md:basis-4/10">
+                      <div className="flex flex-col items-center md:items-stretch">
                         <div className="text-2xl font-semibold text-secondaryColor mb-5">{"Dr."+item.userName}</div>
                         <div className="text-base ">
                           {item.specialization}
@@ -149,10 +163,10 @@ export const Search = () => {
                         <div className="text-base mb-5">{"Experience: "+item.experience+" Years"	}</div>
                         <div className="text-md ">{item.educationDetails}</div>
                       </div>
-                      <div className="flex h-full items-center">
+                      <div className="flex h-full justify-center items-center md:basis-4/10 mx-2">
                       <button 
                       onClick={() => handleBookAppointment(item)}
-                      className="text-base h-fit bg-secondaryColor text-white px-4 py-2 rounded-md">
+                      className="text-sm sm:text-base h-fit bg-secondaryColor text-white my-2 px-4 py-2 rounded-md">
                         Book Appointment
                       </button>
                       </div>

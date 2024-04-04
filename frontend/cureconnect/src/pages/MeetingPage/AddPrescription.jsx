@@ -16,7 +16,6 @@ const PrescriptionForm = ({}) => {
   const navigate = useNavigate();
   
 
-  console.log(meetingDetails);
   const [rows, setRows] = useState([
     { id: 1, medicineId: "", medicineName: "", quantity: "", description: "" },
   ]);

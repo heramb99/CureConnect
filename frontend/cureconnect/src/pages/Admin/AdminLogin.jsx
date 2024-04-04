@@ -1,5 +1,5 @@
 import React from 'react';
-import '../LoginSignup/userProfileStyle.css'
+import '../../pages/css/userProfileStyle.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {ToastContainer,toast} from 'react-toastify'
@@ -43,7 +43,6 @@ export const AdminLogin = () => {
 
       const storeUser = (id, token, role) => {
         try {
-            console.log(id);
             localStorage.clear();
     
             const userData = {
@@ -56,7 +55,6 @@ export const AdminLogin = () => {
           //  navigate('/user/Profile');
 
         } catch (error) {
-            console.log(error);
         }
     };
 
@@ -90,8 +88,7 @@ export const AdminLogin = () => {
             formData.role = 'admin';
       
             storeUser(formData.id, token, formData.role);
-            console.log('id',formData.id, 'token: ', token,'role: ', formData.role);
-
+            
           } catch (error) {
             if (error.code === 'auth/invalid-credential') {
               // Handle invalid credential

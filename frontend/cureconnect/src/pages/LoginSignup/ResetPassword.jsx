@@ -1,4 +1,4 @@
-import './userProfileStyle.css';
+import '../../pages/css/userProfileStyle.css';
 import React, { useState } from 'react';
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +19,6 @@ export const ResetPassword = () => {
       return;
     } 
    else if (formData.newPassword.length < 8 || formData.newPassword.length > 16 ){
-     console.log('Test ');
      toast.error("Passwords should contain 8 to 16 characters");
      return;
    }

@@ -6,14 +6,15 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import PatientNavbar from "../../Components/PatientNavbar";
 import PatientFooter from "../../Components/PatientFooter";
-import './ProfilePageStyle.css';
-import './Imageupload.css';
+import '../../pages/css/ProfilePageStyle.css';
+import '../../pages/css/Imageupload.css';
 import getUserDetails from '../../service/userService';
 import updateProfile from '../../service/userService';
 import getBookingDetails from '../../service/userService';
 import countMonthAppointment from '../PatientDashboard/PatientBookings';
 import { ToastContainer, toast } from 'react-toastify';
 import {deleteUserAccount} from '../Authentication/Auth';
+import profileImage from '../../assets/profileImage.jpg';
 
 const generateProvinceOptions = () => {
     const provinces = [
@@ -130,9 +131,7 @@ export const ProfilePage = () => {
 
                 const bookingDetails = await getBookingDetails.getBookingsDetails(formData.id, userData.token);
                 const monthBookings = await countMonthAppointment.countMonthAppointment(bookingDetails);
-                console.log(details);
                 if (details === null || details === undefined) {
-                    console.log("details are none !!")
                     navigate('/user/login');
                 } else {
                     setValidateData({
@@ -180,7 +179,6 @@ export const ProfilePage = () => {
                 });
             });
         } catch (error) {
-            console.log(error);
         }
     }
 
@@ -193,7 +191,6 @@ export const ProfilePage = () => {
             updatePassword(user, newPassword.password).then(() => {
                 toast.success("Password updated Succesfully !!");
             }).catch((error) => {
-                console.log("Error", error)
             });
         }
     };
@@ -278,7 +275,6 @@ export const ProfilePage = () => {
         e.preventDefault();
 
         if (imageUpload != null) {
-            console.log(imageUpload);
             userImageUpload();
             toast.success('User Details are updated !!');
         } else {
@@ -298,7 +294,6 @@ export const ProfilePage = () => {
                     }
                 }
             } catch (e) {
-                console.log("Error while updating data", e);
                 toast.error('Unable to update the data');
             }
         }
@@ -315,7 +310,6 @@ export const ProfilePage = () => {
             }, 500);
         } catch (error) {
             toast.error('Error to log out user');
-            console.log(error);
         }
     }
 
@@ -333,7 +327,6 @@ export const ProfilePage = () => {
                 toast.error("Unable to delete account");
             }
         }catch(error){
-            console.log(error);
         }
     }
 
@@ -361,7 +354,7 @@ export const ProfilePage = () => {
                                             {formData.profilePicture ? (
                                                 <img src={formData.profilePicture} alt="Uploaded" className="imageStyle object-cover rounded-[50%] w-[200px] h-[200px] bg-no-repeat" />
                                             ) : (
-                                                <img src="/src/assets/profileImage.jpg" alt="Doctor Logo" className="imageStyle object-cover rounded-[50%] w-[200px] h-[200px] bg-no-repeat" />
+                                                <img src={profileImage} alt="Doctor Logo" className="imageStyle object-cover rounded-[50%] w-[200px] h-[200px] bg-no-repeat" />
                                             )}
                                         </div>
                                     </div>

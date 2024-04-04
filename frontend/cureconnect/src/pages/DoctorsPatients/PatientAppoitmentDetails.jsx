@@ -21,7 +21,6 @@ function PatientAppointmentDetails() {
     const fetchAppointments  = function (){
         getPatientsAppointments(patientId)
             .then((res) => {
-                console.log(JSON.stringify(res));
                 setFutureAppointmentData(res.futureAppointments);
                 setPastAppointmentData(res.pastAppointments)
             });

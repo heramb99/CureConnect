@@ -1,5 +1,5 @@
 import React from "react";
-import "./userProfileStyle.css";
+import '../../pages/css/userProfileStyle.css';
 import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -46,7 +46,6 @@ export const DoctorRegister = () => {
   };
 
   const handleImageChange = (event) => {
-    console.log("File triggered");
     const fileName = event.target.files[0]?.name;
     setProfileImageName(fileName);
     setImageUpload(event.target.files[0]);
@@ -116,7 +115,6 @@ export const DoctorRegister = () => {
         });
       });
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -133,14 +131,12 @@ export const DoctorRegister = () => {
         });
       });
     } catch (error) {
-      console.log(error);
     }
   }
 
   // function to store user data into localstorage
   const storeUser = (id, token, role) => {
     try {
-      console.log(id);
       localStorage.clear();
 
       const userData = {
@@ -152,7 +148,6 @@ export const DoctorRegister = () => {
       toast.success("User registered successfully !");
       navigate("/doctor/appointments");
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -255,23 +250,15 @@ export const DoctorRegister = () => {
         const user = result.user;
         const token = await user.getIdToken();
         formData.id = user.uid;
-        console.log("User ID : ", formData.userID);
-        console.log("Token : ", token);
-        console.log("User : ", formData);
         try {
           const userDetails = await registerUser.registerUser(formData);
-          console.log(userDetails);
           const updatedToken = await user.getIdToken(true)
           
-          console.log("Updated token:"+updatedToken)
           const doctor = await registerDoctor.registerDoctor(formData,updatedToken)
-          console.log(doctor)
           storeUser(formData.id, token, formData.userRole);
         } catch (error) {
-          console.log(error);
         }
       } catch (error) {
-        console.error("Firebase authentication error:", error);
         switch (error.code) {
           case "auth/email-already-in-use":
             toast.error(

@@ -81,12 +81,10 @@ function AppointmentManagement() {
             title: currentTimeStamp > appointment.end ? "Completed" : appointment.booked ? "Booked" : "Available",
         }
         ));
-        console.log(modifiedEvents);
         setEvents(modifiedEvents);
         loadUpcomingAppointments(modifiedEvents);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -96,7 +94,6 @@ function AppointmentManagement() {
         setAppointmentMapByDate(res.appointmentMapByDate);
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 
@@ -165,7 +162,6 @@ function AppointmentManagement() {
         })
         .catch((err) => {
           toast.error("Something went wrong");
-          console.log(err);
         });
         handleDeleteDialog()
     }
@@ -174,14 +170,13 @@ function AppointmentManagement() {
   const eventStyleGetter = (event, start, end, isSelected) => {
 
     let style = {
-      backgroundColor: 'red', // Default background color
-      color: 'white', // Default text color
-      borderRadius: '0px', // Border radius
-      border: 'none', // Border style
+      backgroundColor: 'red', 
+      color: 'white', 
+      borderRadius: '0px', 
+      border: 'none', 
     };
 
     const todaydate = new Date();
-    // Customize style based on event properties
     if(start<todaydate){
         style.backgroundColor = '#A9A9A9';
     }else if (!event.booked) {
@@ -258,7 +253,6 @@ function AppointmentManagement() {
             toast.error("Something went wrong")
         }
     }catch(error){
-        console.log(error)
     }
 
 
@@ -266,8 +260,8 @@ function AppointmentManagement() {
 }
     const handleJoinMeeting = (meeting) => {
         const currentTime=new Date().getTime();
-        navigate(`/appointment/doctor/meeting/:${meeting.meetingId}`, { state: { meeting } });
         if(currentTime>=meeting.start && currentTime<=meeting.end){
+          navigate(`/appointment/doctor/meeting/:${meeting.meetingId}`, { state: { meeting } });
         }else{
             toast.error("Meeting is not started yet");
         }
@@ -299,7 +293,6 @@ function AppointmentManagement() {
                 startAccessor="start"
                 endAccessor="end"
                 eventPropGetter={eventStyleGetter}
-                //   style={{ height: 500,}}
                 className="border-2 rounded-lg border-secondaryColor p-2 overflow-y-auto "
                 onSelectEvent={handleEventClick}
               />
@@ -311,7 +304,7 @@ function AppointmentManagement() {
             }
             </div>
           </div>
-          <div className=" lg:basis-2/5 lg:flex lg:flex-col lg:overflow-hidden pt-2 px-2">
+          <div className=" lg:basis-2/5 lg:flex lg:flex-col lg:overflow-hidden p-2">
             <h1 className="text-xl lg:text-2xl font-semibold mb-5 ml-5">
               Upcoming Appointments
             </h1>
@@ -333,7 +326,7 @@ function AppointmentManagement() {
                         {months[new Date(meeting.appointmentDate).getMonth()].toUpperCase()}
                       </h2>
                     </div>
-                    <div className="flex flex-1 gap-3  items-center justify-between sm:items-center m-2 overflow-hidden">
+                    <div className="flex flex-1 gap-3 flex-col md:flex-row lg:flex-col xl:flex-row  items-center justify-between sm:items-center m-2 overflow-hidden">
                       <div className=" flex flex-col md:ml-3 justify-center gap-2">
                         <div className="flex gap-2 items-center">
                             <IoPersonSharp/>
@@ -378,7 +371,7 @@ function AppointmentManagement() {
             </div>
             <ToastContainer />
             <div className=" md:flex-1 md:ml-5">
-              <h1 className="text-xl lg:text-2xl font-semibold my-3 ">
+              <h1 className="text-xl lg:text-2xl font-semibold  my-5 ">
                 Statistics
               </h1>
               <div className=" text-sm md:text-md flex flex-col border-2 border-secondaryColor p-3 gap-4 rounded-lg">

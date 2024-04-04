@@ -1,5 +1,4 @@
 import Footer from "../Landing/Footer.jsx";
-
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import AdminNavbar from "../../Components/AdminNavbar.jsx";
@@ -37,9 +36,7 @@ function DoctorsApproval() {
     const handleApproval = (event,doctorId,isApproved) => {
         event.preventDefault()
         if (!isApproved) {
-            console.log("Approving");
             approveDoctor(doctorId).then((res)=>{
-                console.log("I was here!");
                     toast.success("Doctor Approved!");
                     fetchDoctor();
             }).catch((res)=>{
@@ -167,11 +164,11 @@ function DoctorsApproval() {
 
                                                 {doctor.approved ? (
                                                     // ${doctor.approved ? "bg-secondaryColor":"bg-primaryColor"}
-                                                    <button disabled className="bg-green-500 text-white px-4 py-2 rounded cursor-not-allowed bg-primaryColor">
+                                                    <button disabled className=" text-white px-4 py-2 rounded cursor-not-allowed bg-primaryColor">
                                                         Approved
                                                     </button>
                                                 ) : (
-                                                    <button onClick={event => handleApproval(event,doctor.id,doctor.approved)} className="bg-blue-500 text-white px-4 py-2 rounded bg-secondaryColor">
+                                                    <button onClick={event => handleApproval(event,doctor.id,doctor.approved)} className=" text-white px-4 py-2 rounded bg-secondaryColor">
                                                         Approve
                                                     </button>
                                                 )}

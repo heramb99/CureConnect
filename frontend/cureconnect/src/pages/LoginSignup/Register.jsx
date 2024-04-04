@@ -1,5 +1,5 @@
 import React from 'react';
-import './userProfileStyle.css';
+import '../../pages/css/userProfileStyle.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'
@@ -55,7 +55,6 @@ export const Register = () => {
   // function to store user data into localstorage
   const storeUser = (id, token, role) => {
     try {
-      console.log(id);
       localStorage.clear();
 
       const userData = {
@@ -68,7 +67,6 @@ export const Register = () => {
       navigate('/user/Login');
 
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -127,14 +125,10 @@ export const Register = () => {
         const user = result.user;
         const token = await user.getIdToken();
         formData.id = user.uid;
-        console.log("User ID : ", formData.userID);
-        console.log("Token : ", token);
         try {
           const userDetails = await registerUser.registerUser(formData);
-          console.log(userDetails);
           storeUser(formData.id, token, formData.userRole);
         } catch (error) {
-          console.log(error);
         }
       } catch (error) {
         console.error('Firebase authentication error:', error);

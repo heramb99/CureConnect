@@ -1,5 +1,5 @@
 import React from "react";
-import "./userProfileStyle.css";
+import '../../pages/css/userProfileStyle.css';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,7 +11,9 @@ import Footer from "../Landing/Footer";
 import userService from "../../service/userService";
 import doctorService from "../../service/doctorService";
 
+
 export const Login = () => {
+  //const navigate = useNavigate();
   const navigate = useNavigate();
   const [isSignIn, setisSignIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -46,33 +48,34 @@ export const Login = () => {
 
   const storeUser = async (token) => {
     try {
-      console.log("Inside store user", userData);
       localStorage.clear();
       localStorage.setItem("userInfo", JSON.stringify(userData));
       if (userData.role === "patient") {
         toast.success("User Logged in");
-        navigate("/patient");
+        navigate("/dashboard",{replace:true});
+        // navigate("/patient",{replace:true});
       } else if (userData.role === "doctor") {
         const doctor = await doctorService.fetchDoctorDetails(
           userData.id,
           token
         );
-        console.log("Doctor ", doctor);
         if (doctor.approved) {
-          navigate("/doctor/appointments");
+          navigate("/dashboard",{replace:true});
+          // navigate("/doctor/appointments",{replace:true});
         } else {
           toast.error("Doctor is not approved yet");
         }
       } else if (userData.role === "admin") {
-        navigate("/admin/inventory");
+        navigate("/dashboard",{replace:true});
+        // navigate("/admin/inventory",{replace:true});
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
   // function to validate form data
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
 
     if (!formData.email) {
@@ -155,7 +158,8 @@ export const Login = () => {
                         Sign In
                       </header>
                     </div>
-                    <form onSubmit={handleSubmit}>
+                    <form  >
+                   {/* onSubmit={handleSubmit}> */}
                       <div className="flex flex-col relative">
                         <input
                           type="text"
@@ -190,11 +194,13 @@ export const Login = () => {
                         </span>
                       </div>
                       <div className="flex flex-col relative bg-gray-300">
-                        <input
+                        {/* <input
                           type="submit"
                           className="h-12 px-6 text-black bg-gray-200 hover:bg-teal-600 hover:text-white"
                           value="Sign In"
-                        />
+                        /> */}
+                        <button className="h-12 px-6 text-black bg-gray-200 hover:bg-teal-600 hover:text-white"
+                          value="Sign In" onClick={handleSubmit}>Sign In</button>
                         <ToastContainer />
                       </div>
                     </form>

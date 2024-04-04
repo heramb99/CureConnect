@@ -66,7 +66,6 @@ function FileUpload({handleRefresh}) {
             uploadedFiles.forEach(file => {
                 formData.append('uploadedFiles', file);
             });
-            console.log(uploadedFiles)
             const response = await axios.post(`${apiURL}/api/v1/inventory/multipleAdd`, formData , {
                 headers: {
                   'Content-Type': 'multipart/form-data'

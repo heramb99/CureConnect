@@ -151,7 +151,6 @@ function Appointment() {
         ...filteredAppointment,
         ...formData,
       };
-      console.log(mergedData);
 
       updateAppointment(mergedData).then ((res) => {
         event.target.reset();
