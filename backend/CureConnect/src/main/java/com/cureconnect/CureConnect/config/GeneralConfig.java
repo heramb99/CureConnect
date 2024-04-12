@@ -20,14 +20,6 @@ import java.util.stream.Stream;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class GeneralConfig {
-//      @Bean
-//      public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.sessionManagement(
-//            httpSecuritySessionManagementConfigurer ->
-//                httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
-//                    SessionCreationPolicy.STATELESS));
-//        return http.build();
-//      }
 
     /**
      * Configures the security filter chain for HTTP requests.
@@ -45,10 +37,22 @@ public class GeneralConfig {
                                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
                                         SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/doctor/**").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/doctor/**").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/doctor/getAllApprovedDoctors", "/api/v1/user/**").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/user/register").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/user/register").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/user/register").hasAuthority("ROLE:ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/inventory/**").hasAuthority("ROLE:ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/inventory/**").hasAuthority("ROLE:ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/inventory/updateInventory").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/inventory/fetchAll").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/appointment/**").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/appointment/getAppointmentByDate/**", "/api/v1/appointment/getAllAppointment/**", "/api/v1/appointment/getAppointmentsCompleted/**", "/api/v1/appointment/getPatientsTreated/**", "/api/v1/appointment/getEarningForMonth/**", "/api/v1/appointment/getTotalEarnings/**", "/api/v1/appointment/patient/**").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/appointment/getAppointmentByDate/**", "/api/v1/appointment/getAllAppointment/**", "/api/v1/appointment/getAppointmentFromToday", "/api/v1/appointment/patient/**").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/appointment/updatePrescription").hasAuthority("ROLE:DOCTOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/appointment/update").hasAuthority("ROLE:PATIENT")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/appointment/deleteById/**").hasAuthority("ROLE:DOCTOR")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt()

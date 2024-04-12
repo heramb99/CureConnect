@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import PatientNavbar from "../../Components/PatientNavbar";
 import PatientFooter from "../../Components/PatientFooter";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { fetchPastPrescriptionDataAPI } from "../../service/patientAppointmentService";
 
 function PastAppointments() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  // const userInfo = "kseryLgniKPNB4V3oFE4ryWjWlO2";
 
   const [pastPrescriptionData, setPastPrescriptionData] = useState([]);
 
@@ -83,12 +83,10 @@ function PastAppointments() {
     setSearchText(e.target.value);
   };
 
-  const handleView = () => {
-    navigate("");
-  };
+  const navigate = useNavigate();
 
-  const handleDownload = () => {
-    navigate("");
+  const handleView = (prescription) => {
+    navigate("/patient/pastappointments/viewprescription", { state: { prescription } });
   };
 
   return (
@@ -128,9 +126,6 @@ function PastAppointments() {
                   <th scope="col" className="px-3 py-3">
                     View
                   </th>
-                  <th scope="col" className="px-3 py-3">
-                    Download
-                  </th>
                 </tr>
               </thead>
               <tbody className="md:text-lg">
@@ -151,13 +146,10 @@ function PastAppointments() {
                       {convertToTime(prescription.start)}
                     </td>
                     <td className="pt-2">
-                      <button onClick={handleView} className="text-2xl">
+                      <button 
+                        onClick={() => handleView(prescription)}
+                        className="text-2xl">
                         <IoEye />
-                      </button>
-                    </td>
-                    <td className="pt-2">
-                      <button onClick={handleDownload} className="text-2xl">
-                        <FaFileDownload />
                       </button>
                     </td>
                   </tr>

@@ -19,17 +19,18 @@ public class AdminController {
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
+
     @GetMapping("/doctors")
-    public ResponseEntity getDoctors(){
-        ResponseEntity response;
-        List<Doctor> doctorUsers =  adminService.getDoctorUsers();
-        if(doctorUsers.isEmpty()){
+    public ResponseEntity getDoctors() {
+        List<Doctor> doctorUsers = adminService.getDoctorUsers();
+        if (doctorUsers.isEmpty()) {
             return new ResponseEntity("No Doctor User Exist!", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(doctorUsers);
     }
+
     @PutMapping("/doctors/{doctorId}")
-    public ResponseEntity approve(@PathVariable String doctorId){
+    public ResponseEntity approve(@PathVariable String doctorId) {
         adminService.approveDoctor(doctorId);
         return ResponseEntity.ok("Doctor has been approved!");
     }

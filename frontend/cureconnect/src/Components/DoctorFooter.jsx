@@ -12,6 +12,10 @@ function DoctorFooter() {
       navigate("/doctor/appointments");
     } else if(key === "patients"){
       navigate(("/doctor/patients"))
+    } else if(key === "faq"){
+      navigate(("/faq"))
+    } else if(key === "contactus"){
+      navigate(("/contactus"))
     } else {
       navigate("/");
     }
@@ -30,14 +34,12 @@ function DoctorFooter() {
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Support</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("aboutus")}>About Us </a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>Contact Us</a>
                 <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("faq")}>FAQ</a> 
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Contact us</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" href="/#">2495 Maynard St, Halifax, CA</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" href="/#">contact@cureconnect.com </a> 
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>2495 Maynard St, Halifax, CA</a>
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>contact@cureconnect.com </a> 
             </div>
         </div>
         <div className="pt-2">

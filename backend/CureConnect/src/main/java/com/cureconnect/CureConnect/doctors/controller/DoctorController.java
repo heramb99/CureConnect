@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +29,6 @@ public class DoctorController {
      * @return         	The ResponseEntity containing the registered doctor
      */
     @PostMapping("/register")
-    @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity<Doctor> register(@RequestBody Doctor doctor) {
 
         Doctor responseDoctor = doctorService.registerDoctor(doctor);
@@ -43,7 +41,6 @@ public class DoctorController {
      * @return         list of approved doctors
      */
     @GetMapping("/getAllApprovedDoctors")
-    @PreAuthorize("hasAuthority('ROLE:PATIENT') or hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity<List<Doctor>> getAllApprovedDoctors() {
         List<Doctor> doctorList = doctorService.getAllApprovedDoctors();
         return ResponseEntity.status(HttpStatus.OK).body(doctorList);
@@ -68,7 +65,6 @@ public class DoctorController {
      * @return         description of return value
      */
     @GetMapping("/patients")
-    @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity getPatients(@AuthenticationPrincipal Jwt jwt) {
         return doctorService.getPatients(jwt.getSubject());
     }
@@ -81,9 +77,7 @@ public class DoctorController {
      * @return          description of return value
      */
     @GetMapping("/patients/{patientId}/appointments")
-    @PreAuthorize("hasAuthority('ROLE:DOCTOR')")
     public ResponseEntity getPatientsAppointments(@AuthenticationPrincipal Jwt jwt, @PathVariable String patientId) {
-        System.out.println("Patient ID -> " + patientId);
         return doctorService.getPatientsAppointments(jwt.getSubject(), patientId);
     }
 

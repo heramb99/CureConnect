@@ -25,9 +25,7 @@ function AdminNavbar({ location }) {
   };
 
   const handleRouting = (key) => {
-    if (key === "orders") {
-      navigate("/admin/orders");
-    } else if (key === "inventory") {
+    if (key === "inventory") {
       navigate("/admin/inventory");
     } else if (key === "approval") {
       navigate("/admin/approval");
@@ -47,14 +45,6 @@ function AdminNavbar({ location }) {
       </div>
       <div className="flex items-center">
         <ul className="hidden md:flex gap-3 text-md text-backgroundColor font-bold hover:cursor-pointer">
-          <li
-            className={`text-${location!=="orders" ? 'whiteColor':'primaryColor'} p-4 hover:scale-110 ease-in-out duration-150 hover:text-primaryColor after:bg-primaryColor after:absolute after:h-[1px] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-200`}
-            onClick={() => {
-              handleRouting("orders");
-            }}
-          >
-            Orders
-          </li>
           <li
             className={`text-${location!=="inventory" ? 'whiteColor':'primaryColor'} p-4 hover:scale-110 ease-in-out duration-150 hover:text-primaryColor after:bg-primaryColor after:absolute after:h-[1px] after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-200`}
           

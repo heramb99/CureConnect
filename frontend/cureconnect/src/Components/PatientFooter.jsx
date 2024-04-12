@@ -16,7 +16,7 @@ function PatientFooter() {
       navigate("/patient/pastappointments");
     } else if (key === "buymedicine") {
       navigate("/patient/prescriptionlist");
-    } else if (key === "contact") {
+    } else if (key === "contactus") {
       navigate("/contactus");
     } else if (key === "faq") {
       navigate("/faq");
@@ -31,7 +31,7 @@ function PatientFooter() {
             <img src={Logo} alt="" />
           </div>
             <div className="p-5"> 
-                <div className="text-sm uppercase  font-bold">Services</div>
+                <div className="text-sm uppercase font-bold">Services</div>
                 <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("dashboard")}>Dashboard</a>
                 <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("appointment")}>Book an Appointment</a>
                 <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("past")}>Past Appointments</a> 
@@ -39,14 +39,12 @@ function PatientFooter() {
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Support</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("aboutus")}>About Us </a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>Contact Us</a>
                 <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("faq")}>FAQ</a> 
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Contact us</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" href="/#">2495 Maynard St, Halifax, CA</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" href="/#">contact@cureconnect.com </a> 
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>2495 Maynard St, Halifax, CA</a>
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={() => handleRouting("contactus")}>contact@cureconnect.com </a> 
             </div>
         </div>
         <div className="pt-2">

@@ -156,8 +156,8 @@ function Appointment() {
         event.target.reset();
         toast.success("Appointment booked successfully! You will be redirected to dashboard shortly.");
         setTimeout(() => {
-        navigate("/patient");
-      }, 3000)
+          navigate("/patient/paymentgateway");
+        }, 3000)
       });
     }
   };

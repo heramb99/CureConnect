@@ -18,9 +18,9 @@ import AdminLogin from './pages/Admin/AdminLogin';
 import AdminRegister from './pages/Admin/AdminRegister';
 import AddPrescription from './pages/MeetingPage/AddPrescription';
 import PastAppointments from './pages/PastAppointments/PastAppointments';
+import ViewPrescription from './pages/ViewPrescription/ViewPrescription';
 import Inventory from './pages/Inventory/Inventory';
 import Appointment from './pages/PatientAppointment/Appointment';
-import PaymentSuccessful from './pages/PaymentSuccess/PaymentSuccessful';
 
 import MeetingRoom from './pages/MeetingPage/MeetingRoom';
 import PrivateRoute from "./Components/PrivateRoute";
@@ -29,6 +29,8 @@ import PatientAppoitmentDetails from "./pages/DoctorsPatients/PatientAppoitmentD
 import DoctorsApproval from "./pages/Admin/DoctorsApproval.jsx";
 import Search from "./pages/Search/Search.jsx";
 import Dashboard from "./Components/Dashboard.jsx";
+import { DoctorProfilePage } from './pages/LoginSignup/DoctorProfilePage.jsx';
+import PaymentGateway from './Components/PaymentGateway.jsx';
 
 
 function App() {
@@ -67,15 +69,17 @@ function App() {
             <Route path="/patient/Profile" element={<ProfilePage />} />
             <Route path='/patient/appointment' element={<Appointment/>} />
             <Route path='/patient/pastappointments' element={<PastAppointments/>} />
+            <Route path='/patient/pastappointments/viewprescription' element={<ViewPrescription/>} />
             <Route path='/patient/prescriptionlist' element={<PrescriptionList/>} />
             <Route path='/patient/prescriptionlist/prescribedmedicine' element={<PrescribedMedicine/>} />
-            <Route path='/patient/prescriptionlist/prescribedmedicine/paymentsuccess' element={<PaymentSuccessful/>} />
             <Route path='/appointment/patient/meeting/:meetingId' element={<MeetingRoom/>} />
             <Route path='/patient/search' element={<Search/>} />
+            <Route path='/patient/paymentgateway' element={<PaymentGateway/>} />
           </Route>
 
           {/* Private Routes for Doctors */}
           <Route element={<PrivateRoute role={"doctor"} />}>
+            <Route path="/doctor/Profile" element={<DoctorProfilePage />} />
             <Route path='/doctor/appointments' element={<AppointmentManagement/>} />
             <Route path="/doctor/addPrescription" element={<AddPrescription />} />
             <Route path='/appointment/doctor/meeting/:meetingId' element={<MeetingRoom/>} />

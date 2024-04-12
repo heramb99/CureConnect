@@ -2,19 +2,16 @@ package com.cureconnect.CureConnect.Users.Controller;
 
 import com.cureconnect.CureConnect.Users.Model.Users;
 import com.cureconnect.CureConnect.Users.Service.UsersService;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
@@ -50,7 +47,6 @@ public class UsersController {
      */
     @PostMapping("/register")
     public ResponseEntity<Users> createRegister(@RequestBody Users users) throws FirebaseAuthException {
-        System.out.println(users.getId());
         Users savedUser = usersService.createUser(users);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
@@ -73,12 +69,10 @@ public class UsersController {
      *
      * @param requestBody A map containing the updated user profile information.
      * @return ResponseEntity containing a success message if the update was successful,
-     *         otherwise an error message with an appropriate HTTP status code.
+     * otherwise an error message with an appropriate HTTP status code.
      */
     @PostMapping("/update/profile")
     public ResponseEntity<String> updateUser(@RequestBody Map<String, String> requestBody) {
-
-        System.out.println("Inside Controller "+requestBody);
 
         Optional<Users> updatedUser = usersService.updateUserProfile(requestBody);
 
@@ -98,7 +92,6 @@ public class UsersController {
      */
     @PostMapping("/EmailValidation")
     public boolean findUserByEmail(@RequestBody Map<String, String> requestBody) {
-        System.out.println(requestBody);
         return usersService.findUserByEmail(requestBody.get("email"));
     }
 }

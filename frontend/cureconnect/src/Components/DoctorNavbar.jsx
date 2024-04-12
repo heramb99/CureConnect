@@ -29,7 +29,12 @@ function DoctorNavbar({ location }) {
       navigate("/doctor/appointments");
     } else if(key === "patients"){
       navigate(("/doctor/patients"))
-    } else {
+    }
+    else if (key === "profile"){
+      console.log("profile")
+      navigate("/doctor/Profile")
+    }
+     else {
       navigate("/",{replace:true});
     }
   };
@@ -112,6 +117,12 @@ function DoctorNavbar({ location }) {
           {!smallNav && <img onClick={handleLogoutDropdown} className="w-10 h-10 p-1 m-3 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 hover:cursor-pointer" src={DefaultAvatar} alt="Bordered avatar" />}
           {showLogoutDropdown && (
             <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-10">
+              <button
+                className="block px-4 py-2 text-secondaryColor hover:bg-primaryColor hover:text-white w-full text-left"
+                onClick={() => handleRouting("profile")}
+              >
+                Profile
+              </button>
               <button
                 className="block px-4 py-2 text-secondaryColor hover:bg-primaryColor hover:text-white w-full text-left"
                 onClick={handleLogout}

@@ -5,7 +5,6 @@ import PatientFooter from "../../Components/PatientFooter";
 import PatientNavbar from "../../Components/PatientNavbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import StripeCheckout from "react-stripe-checkout";
 import { fetchInventoryAPI } from "../../service/inventoryService";
 
 function PrescribedMedicine() {
@@ -116,7 +115,9 @@ function PrescribedMedicine() {
   };
 
   const handleProceedToPay = () => {
-    setShowModal(true);
+    if(total>0){
+      setShowModal(true);
+    }
   };
 
   const handleModalClose = () => {
@@ -320,7 +321,7 @@ function PrescribedMedicine() {
             Total Cost: {total} CAD
           </div>
           <button
-            className="flex justify-center rounded-md py-2 px-4 md:text-lg font-semibold text-white bg-secondaryColor  hover:bg-primaryColor hover:text-black"
+            className={`${total > 0 ? "bg-secondaryColor hover:bg-primaryColor text-white hover:text-black" : "bg-gray-300 hover:bg-none text-black"} flex justify-center rounded-md py-2 px-4 md:text-lg font-semibold `}
             onClick={handleProceedToPay}
           >
             Proceed to pay

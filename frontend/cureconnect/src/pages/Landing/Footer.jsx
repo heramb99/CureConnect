@@ -1,31 +1,44 @@
 import React from 'react'
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import Logo from "../../../src/assets/logos/logo3/logo-no-background.svg";
+import { useNavigate } from "react-router-dom";
 
 
 function Footer() {
+  const navigate = useNavigate();
+
+  const handleLoginSignupClick = () => {
+    navigate('/user/Login');
+  }
+
+  const handleFAQClick = () => {
+    navigate('/faq');
+  }
+
+  const handleContactUsClick = () => {
+    navigate('/contactus');
+  }
+
+
   return (
     <footer className='w-full bg-secondaryColor p-3'>
-        <div className="max-w-screen-lg px-4 sm:px-6 text-backgroundColor sm:grid md:grid-cols-4 sm:grid-cols-2 mx-auto ">
+        <div className="max-w-screen-lg px-4 sm:px-6 text-backgroundColor sm:grid lg:grid-cols-4 md:grid-cols-2 mx-auto">
         <div className=" w-60 p-4">
             <img src={Logo} alt="" />
           </div>
             <div className="p-5"> 
-                <div className="text-sm uppercase  font-bold">Services</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Documentation</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Tutorials</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Support</a> 
+                <div className="text-sm uppercase font-bold">Services</div>
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={handleLoginSignupClick}>Login</a>
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={handleLoginSignupClick}>Sign Up</a>
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Support</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Help Center </a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Privacy Policy</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">Condition</a> 
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={handleFAQClick}>FAQ</a>
             </div>
             <div className="p-5">
                 <div className="text-sm uppercase font-bold">Contact us</div>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">XXX XXXX, Halifax, CA</a>
-                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor" href="/#">contact@cureconnect.com </a> 
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={handleContactUsClick}>2495 Maynard St, Halifax, CA</a>
+                <a className="my-3 font-semibold block hover:font-extrabold transition duration-150 ease-in-out hover:text-primaryColor hover:cursor-pointer" onClick={handleContactUsClick}>contact@cureconnect.com </a> 
             </div>
         </div>
         <div className="pt-2">

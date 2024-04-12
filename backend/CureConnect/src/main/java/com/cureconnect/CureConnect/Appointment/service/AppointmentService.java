@@ -24,8 +24,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Saves a list of appointments to the database.
      *
-     * @param  appointmentList    the list of appointments to be saved
-     * @return                   true if the appointments were successfully saved
+     * @param appointmentList the list of appointments to be saved
+     * @return true if the appointments were successfully saved
      */
     @Override
     public boolean addAppointments(List<Appointment> appointmentList) {
@@ -36,8 +36,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Deletes an appointment by ID.
      *
-     * @param  id   the ID of the appointment to be deleted
-     * @return      true if the appointment is deleted, false otherwise
+     * @param id the ID of the appointment to be deleted
+     * @return true if the appointment is deleted, false otherwise
      */
     @Override
     public boolean deleteAppointment(String id) {
@@ -52,8 +52,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves appointments by date for a specific doctor.
      *
-     * @param  doctorId   The ID of the doctor to retrieve appointments for
-     * @return           A map of appointment dates to lists of appointments
+     * @param doctorId The ID of the doctor to retrieve appointments for
+     * @return A map of appointment dates to lists of appointments
      */
     @Override
     public Map<Long, List<Appointment>> getAppointmentsByDate(String doctorId) {
@@ -74,8 +74,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves a list of appointments for a specific doctor.
      *
-     * @param  doctorId   the ID of the doctor to retrieve appointments for
-     * @return           a list of appointments associated with the specified doctor
+     * @param doctorId the ID of the doctor to retrieve appointments for
+     * @return a list of appointments associated with the specified doctor
      */
     @Override
     public List<Appointment> getAppointmentsByDoctor(String doctorId) {
@@ -85,8 +85,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves appointments for a specific user.
      *
-     * @param  userId  the ID of the user
-     * @return         list of appointments for the user
+     * @param userId the ID of the user
+     * @return list of appointments for the user
      */
     @Override
     public List<Appointment> getAppointmentsByUserId(String userId) {
@@ -96,8 +96,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * A function to get available appointments starting from today for a specific doctor.
      *
-     * @param  doctorId  the ID of the doctor to get appointments for
-     * @return          a map of available appointments indexed by date
+     * @param doctorId the ID of the doctor to get appointments for
+     * @return a map of available appointments indexed by date
      */
     @Override
     public Map<Long, List<Appointment>> getAvailableAppointmentFromToday(String doctorId) {
@@ -116,8 +116,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves an appointment by its ID.
      *
-     * @param  id   the ID of the appointment to retrieve
-     * @return      the appointment if found, otherwise null
+     * @param id the ID of the appointment to retrieve
+     * @return the appointment if found, otherwise null
      */
     @Override
     public Appointment getAppointment(String id) {
@@ -142,8 +142,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves the number of completed appointments for a specific doctor.
      *
-     * @param  doctorId The unique identifier of the doctor
-     * @return         The number of completed appointments
+     * @param doctorId The unique identifier of the doctor
+     * @return The number of completed appointments
      */
     public int getNumberOfAppointmentsCompleted(String doctorId) {
         long currentMillis = System.currentTimeMillis();
@@ -154,8 +154,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves the number of distinct patients treated by a doctor.
      *
-     * @param  doctorId  the ID of the doctor
-     * @return          the number of distinct patient IDs treated
+     * @param doctorId the ID of the doctor
+     * @return the number of distinct patient IDs treated
      */
     public int getNumberOfDistinctPatientsTreated(String doctorId) {
         long currentMillis = System.currentTimeMillis();
@@ -169,8 +169,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * A method to calculate the total amount earned by a doctor for the current month.
      *
-     * @param  doctorId   the ID of the doctor for whom the total amount is calculated
-     * @return           the total amount earned by the doctor for the current month
+     * @param doctorId the ID of the doctor for whom the total amount is calculated
+     * @return the total amount earned by the doctor for the current month
      */
     @Override
     public Double getTotalAmountEarnedForCurrentMonth(String doctorId) {
@@ -191,8 +191,8 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Returns the total amount earned by a doctor until the current date.
      *
-     * @param  doctorId   the unique identifier of the doctor
-     * @return           the total amount earned by the doctor
+     * @param doctorId the unique identifier of the doctor
+     * @return the total amount earned by the doctor
      */
     @Override
     public Double getTotalAmountEarnedTillDate(String doctorId) {
@@ -211,14 +211,27 @@ public class AppointmentService implements IAppointmentService {
     /**
      * Retrieves future appointments for a given doctor and patient.
      *
-     * @param  doctorId   the ID of the doctor
-     * @param  patientId  the ID of the patient
-     * @return            a list of future appointments
+     * @param doctorId  the ID of the doctor
+     * @param patientId the ID of the patient
+     * @return a list of future appointments
      */
-    public List<Appointment> getFutureAppointmentsByDoctorIdAndPatientId(String doctorId,String patientId){
+    public List<Appointment> getFutureAppointmentsByDoctorIdAndPatientId(String doctorId, String patientId) {
         LocalDateTime currentDate = LocalDateTime.now();
         long currentDateInMillis = currentDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        return appointmentRepository.findByDoctorIdAndPatientIdAndStartGreaterThanEqualAndBooked(doctorId,patientId,currentDateInMillis,true);
+        return appointmentRepository.findByDoctorIdAndPatientIdAndStartGreaterThanEqualAndBooked(doctorId, patientId, currentDateInMillis, true);
+    }
+
+    /**
+     * Retrieves past appointments by doctor id and patient id.
+     *
+     * @param doctorId  the id of the doctor
+     * @param patientId the id of the patient
+     * @return a list of past appointments
+     */
+    public List<Appointment> getPastAppointmentsByDoctorIdAndPatientId(String doctorId, String patientId) {
+        LocalDateTime currentDate = LocalDateTime.now();
+        long currentDateInMillis = currentDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        return appointmentRepository.findByDoctorIdAndPatientIdAndStartLessThanEqualAndBooked(doctorId, patientId, currentDateInMillis, true);
     }
 
     /**

@@ -1,4 +1,4 @@
-import Footer from "../Landing/Footer.jsx";
+import AdminFooter from "../../Components/AdminFooter.jsx";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import AdminNavbar from "../../Components/AdminNavbar.jsx";
@@ -191,7 +191,7 @@ function DoctorsApproval() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <AdminFooter />
         </>
     );
 }

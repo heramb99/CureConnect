@@ -1,10 +1,8 @@
 package com.cureconnect.CureConnect.Users.Service;
 
-import com.cureconnect.CureConnect.Users.Controller.UsersController;
 import com.cureconnect.CureConnect.Users.Model.Users;
 import com.cureconnect.CureConnect.Users.Repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.firebase.auth.FirebaseAuth;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -51,12 +49,12 @@ public class UsersService {
      */
     public Users createUser(Users users) {
         try {
-            Users savedUser =  userRepository.save(users);
+            Users savedUser = userRepository.save(users);
             var customClaims = new ArrayList<String>();
-            customClaims.add("ROLE:"+users.getUserRole().toUpperCase());
-            firebaseAuth.setCustomUserClaims(users.getId(),  Map.of("custom_claims", customClaims));
+            customClaims.add("ROLE:" + users.getUserRole().toUpperCase());
+            firebaseAuth.setCustomUserClaims(users.getId(), Map.of("custom_claims", customClaims));
             return savedUser;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error occurred while saving user: " + e.getMessage());
         }
         return null;
@@ -73,7 +71,7 @@ public class UsersService {
 
             return userRepository.findById(id);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error occurred while fetching user: " + e.getMessage());
         }
         return Optional.empty();
@@ -104,13 +102,7 @@ public class UsersService {
             Optional<Users> user = userRepository.findById(requestMap.get("id"));
             Date birthDate = null;
 
-            System.out.println("Request map "+requestMap);
-
             if (user.isPresent()) {
-
-                System.out.println(requestMap);
-
-                System.out.println(requestMap.get("birthdate"));
 
                 if (requestMap.get("birthdate") != null && !requestMap.get("birthdate").isEmpty()) {
                     birthDate = formatter.parse(requestMap.get("birthdate"));
@@ -121,8 +113,7 @@ public class UsersService {
                 userDetails.setUserRole(requestMap.get("userRole"));
                 userDetails.setBirthdate(birthDate);
                 userDetails.setEmail(requestMap.get("email"));
-                if(requestMap.get("number") != null && !requestMap.get("number").isEmpty()) {
-                    System.out.println("from number"+ (requestMap.get("number")));
+                if (requestMap.get("number") != null && !requestMap.get("number").isEmpty()) {
                     userDetails.setNumber(Long.parseLong(requestMap.get("number")));
                 }
                 userDetails.setGender(requestMap.get("gender"));
@@ -145,7 +136,8 @@ public class UsersService {
             return Optional.empty();
         }
     }
-    public List<Users> getUsersByIds(List<String> ids){
+
+    public List<Users> getUsersByIds(List<String> ids) {
         return userRepository.findAllByIdIn(ids);
     }
 

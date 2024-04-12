@@ -26,17 +26,36 @@ public class MedicineService implements IMedicineService {
     @Autowired
     MedicineRepository medicineRepository;
 
+    /**
+     * Retrieves all medicines from the database.
+     *
+     * @return List of all medicines
+     */
     @Override
     public List<Medicine> getAllMedicines() {
         return medicineRepository.findAll();
     }
 
+    /**
+     * Adds a new medicine to the database.
+     *
+     * @param newMedicine The medicine to be added
+     * @return True if the medicine is added successfully, false otherwise
+     */
     @Override
     public boolean addMedicine(Medicine newMedicine) {
         medicineRepository.save(newMedicine);
         return true;
     }
 
+    /**
+     * Adds multiple medicines from an Excel or CSV file.
+     *
+     * @param file The Excel or CSV file containing medicines data
+     * @return True if the medicines are added successfully, false otherwise
+     * @throws IOException If an I/O error occurs
+     */
+    @Override
     public boolean addMultipleMedicines(MultipartFile file) throws IOException {
         if ("xlsx".equalsIgnoreCase(Objects.requireNonNull(file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf(".") + 1))) {
             Workbook workbook = new XSSFWorkbook(file.getInputStream());
@@ -77,12 +96,23 @@ public class MedicineService implements IMedicineService {
         return true;
     }
 
+    /**
+     * Deletes a medicine from the database by its ID.
+     *
+     * @param id The ID of the medicine to be deleted
+     */
     @Override
     public void deleteMedicine(String id) {
         Medicine.builder().id(id).build();
         medicineRepository.delete(Medicine.builder().id(id).build());
     }
 
+    /**
+     * Retrieves medicines from the database by their names.
+     *
+     * @param medicines An array of medicine names
+     * @return List of medicines matching the provided names
+     */
     @Override
     public List<Medicine> getMedicinesByName(String[] medicines) {
         List<Medicine> allMedicines = getAllMedicines();
@@ -101,6 +131,12 @@ public class MedicineService implements IMedicineService {
         return listOfMedicinesNeeded;
     }
 
+    /**
+     * Updates the quantities of medicines in the database.
+     *
+     * @param medicines List of medicines with updated quantities
+     * @return True if the update is successful, false otherwise
+     */
     @Override
     public boolean updateMedicines(List<Medicine> medicines) {
         medicines.forEach(medicine -> {
@@ -123,6 +159,13 @@ public class MedicineService implements IMedicineService {
         return true;
     }
 
+    /**
+     * Converts a CSV file to a list of Medicine objects.
+     *
+     * @param file The CSV file containing medicines data
+     * @return List of Medicine objects parsed from the CSV file
+     * @throws IOException If an I/O error occurs
+     */
     private static <T> List<T> convertToModel(MultipartFile file) throws IOException {
         Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
         CsvToBean<Medicine> csvReader = new CsvToBeanBuilder(reader)

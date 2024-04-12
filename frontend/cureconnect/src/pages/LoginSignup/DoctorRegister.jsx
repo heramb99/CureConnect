@@ -70,7 +70,7 @@ export const DoctorRegister = () => {
   };
 
   const isValidName = (name) => {
-    const name_regex = /^[a-zA-Z]+$/;
+    const name_regex = /^[a-zA-Z](?:[a-zA-Z .]*[a-zA-Z])?$/;
     return name_regex.test(name);
   };
 

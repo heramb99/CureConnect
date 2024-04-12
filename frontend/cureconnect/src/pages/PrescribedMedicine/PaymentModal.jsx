@@ -1,21 +1,17 @@
 import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import StripeCheckout from "react-stripe-checkout";
 import { useNavigate } from "react-router-dom";
-import Logo2 from "../../assets/logos/logo2/logo-no-background.svg";
 
 const PaymentModal = ({ total, onClose, medicines }) => {
   const deliveryFee = 15;
   const taxRate = 0.15;
-  const taxes = total * taxRate;
+  const taxes = (total+ deliveryFee) * taxRate;
   const grandTotal = total + deliveryFee + taxes;
 
   const navigate = useNavigate();
 
-  // const medicineData = medicines
-
-  const onToken = (token) => {
-    navigate("/patient/prescriptionlist/prescribedmedicine/paymentsuccess", { state: { token, medicines } });
+  const handlePayNow = () => {
+    navigate("/patient/paymentgateway");
   };
 
   return (
@@ -40,18 +36,11 @@ const PaymentModal = ({ total, onClose, medicines }) => {
             </div>
           </div>
 
-          <div className="bg-secondaryColor hover:bg-primaryColor hover:text-black text-white font-semibold px-4 py-2 rounded-md flex justify-center items-center w-full">
-            <StripeCheckout
-              // onClick={onPayNow}
-              token={onToken}
-              name="CureConnect"
-              amount={grandTotal * 100}
-              currency="CAD"
-              image={Logo2}
-              stripeKey="pk_test_51P11AYRp9z8MgrbY2rybAhpFPt9wO0ezhUEFRVTpGK4wlYWSAPcMptQm6hlTxcroMZTAa18iCSpq5tpltAaP04B700CKtJ4AJN"
-            >
+          <div className="">
+            <button className="bg-secondaryColor hover:bg-primaryColor hover:text-black text-white font-semibold px-4 py-2 rounded-md flex justify-center items-center w-full"
+              onClick={handlePayNow}>
               Pay Now
-            </StripeCheckout>
+            </button>
           </div>
         </div>
       </div>
