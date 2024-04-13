@@ -72,7 +72,7 @@ function App() {
             <Route path='/patient/pastappointments/viewprescription' element={<ViewPrescription/>} />
             <Route path='/patient/prescriptionlist' element={<PrescriptionList/>} />
             <Route path='/patient/prescriptionlist/prescribedmedicine' element={<PrescribedMedicine/>} />
-            <Route path='/appointment/patient/meeting/:meetingId' element={<MeetingRoom/>} />
+            <Route path='/appointment/patient/meeting/:meetingId' element={<MeetingRoom userType={"patient"}/>} />
             <Route path='/patient/search' element={<Search/>} />
             <Route path='/patient/paymentgateway' element={<PaymentGateway/>} />
           </Route>
@@ -82,7 +82,7 @@ function App() {
             <Route path="/doctor/Profile" element={<DoctorProfilePage />} />
             <Route path='/doctor/appointments' element={<AppointmentManagement/>} />
             <Route path="/doctor/addPrescription" element={<AddPrescription />} />
-            <Route path='/appointment/doctor/meeting/:meetingId' element={<MeetingRoom/>} />
+            <Route path='/appointment/doctor/meeting/:meetingId' element={<MeetingRoom userType={"doctor"}/>} />
             <Route path='/doctor/patients' element={<DoctorAttendedPatients/>} />
             <Route path='/doctor/patients/:patientId' element={<PatientAppoitmentDetails/>} />
           </Route>

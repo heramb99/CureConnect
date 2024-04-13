@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useNavigate } from "react-router-dom";
 
-function MeetingRoom() {
+function MeetingRoom({ userType}) {
   const { roomId } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -33,8 +33,11 @@ function MeetingRoom() {
       },
       showScreenSharingButton: false,
       onLeaveRoom: () => {
-
-        navigate("/doctor/addPrescription", { state: { meetingDetails } });
+        if(userType === "patient"){
+          navigate("/patient");
+        }else if(userType === "doctor"){
+          navigate("/doctor/addPrescription", { state: { meetingDetails } });
+        }
       },
      })
   }

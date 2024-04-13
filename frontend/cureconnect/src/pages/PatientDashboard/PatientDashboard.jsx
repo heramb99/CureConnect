@@ -11,6 +11,7 @@ import PatientFooter from "../../Components/PatientFooter";
 import getBookingDetails from '../../service/userService';
 import findAppointment from '../PatientDashboard/PatientBookings';
 import getUserDetails from '../../service/userService';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const PatientDashboard = () => {
     const navigate = useNavigate();
@@ -67,12 +68,21 @@ export const PatientDashboard = () => {
                     const details = await getUserDetails.getUserDetails(formData.id, userData.token);
                     setFormData((userName) => ({ ...userName, ["userName"]:  details.userName }));
                 }
-
+                    const nextMeetings=userDetails.filter((booking)=>{
+                        if (new Date(booking.start).getTime() > new Date().getTime()) {
+                            return booking;
+                        }
+                    })
+                    nextMeetings.sort((a, b) => new Date(a.start) - new Date(b.start));
+                    const nextMeeting=nextMeetings[0];
                     if (upcomingAppointment) {
                         setBookins((booking) => ({
                             ...booking, ["bookingDate"]: upcomingAppointment.bookingDate,
                             ["bookingStartTime"]: upcomingAppointment.startTime,
-                            ["bookingEndTime"]: upcomingAppointment.endTime
+                            ["bookingEndTime"]: upcomingAppointment.endTime,
+                            ["meetingId"]:nextMeeting.meetingId,
+                            ["doctorId"]:nextMeeting.patientId,
+                            ["doctorName"]:nextMeeting.patientName
                         }));
                     } else {
                     }
@@ -103,6 +113,15 @@ export const PatientDashboard = () => {
         e.preventDefault();
         navigate("/");
     };
+
+    const handleJoinMeeting = (meeting) => {
+        const currentTime=new Date().getTime();
+        if(currentTime>=meeting.bookingStartTime && currentTime<=meeting.bookingEndTime){
+            navigate(`/appointment/patient/meeting/:${meeting.meetingId}`, { state: { meeting } });
+        }else{
+            toast.error("Meeting is not started yet");
+        }
+    }
 
     const specialties = [
         {
@@ -169,7 +188,7 @@ export const PatientDashboard = () => {
                             ))}
                         </div>
                     </div>
-
+                    <ToastContainer />
                     <div className="p-4 flex flex-col md:flex-row justify-between mt-4 md:mt-10 mt-10 gap-6 md:gap-16">
                         <div className="w-full md:w-1/2 -mb-6 md:mb-8">
                             <div className="p-4">
@@ -183,7 +202,9 @@ export const PatientDashboard = () => {
                                                 <div className="text-sm text-gray-600">Appointment start Time: {bookings.bookingStartTime}</div>
                                                 <div className="text-sm text-gray-600">Appointment end Time: {bookings.bookingEndTime}</div>
                                             </div>
-                                            <button className="text-xs sm:text-sm md:text-md h-fit w-fit  bg-secondaryColor rounded-lg text-whiteColor p-3 hover:bg-primaryColor ">
+                                            <button 
+                                            onClick={() => handleJoinMeeting(bookings)}
+                                            className="text-xs sm:text-sm md:text-md h-fit w-fit  bg-secondaryColor rounded-lg text-whiteColor p-3 hover:bg-primaryColor ">
                                                
                                                 Join Session
                                             </button>
