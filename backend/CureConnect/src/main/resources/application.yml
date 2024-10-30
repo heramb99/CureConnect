@@ -9,6 +9,6 @@ spring:
     name: cure-connect
     data:
       mongodb:
-        uri: mongodb+srv://bhavyamevawala:Bhavya1999@curecluster.arkxf2v.mongodb.net/your_database_name?retryWrites=true&w=majority&appName=CureCluster
+        uri: 
   server:
     port: '8080'

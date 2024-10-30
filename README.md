@@ -1,221 +1,133 @@
-# Proposal Prototype Application
+<div align="center">
+  <img src="images/logo-no-background.png" alt="CureConnect Logo"  height=100>
+</div>
 
-* *Date Created*: 25 Feb 2024
-* *Last Modification Date*: 27 Feb 2024
-* *Assignment URL*: <https://cure-connect.netlify.app/>
-* *Git URL*: <https://git.cs.dal.ca/bmevawala/csci-5709-group-12>
+# CureConnect - Your Trusted Partner in Personalized Healthcare
+
+CureConnect is an innovative, user-friendly web application designed to bridge geographical barriers in healthcare by facilitating virtual appointments, remote consultations, and streamlined medication procurement. By empowering patients to access healthcare professionals from the convenience of their homes, CureConnect ensures timely and effective healthcare delivery, especially for those facing logistical challenges or time constraints. Key features include personalized treatment plans, in-app medicine purchases, and seamless scheduling.
+
+<h2 align="center">💻 Tech Stack</h2>
+<p align="center">
+    <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+    <img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white">
+    <img alt="Spring" src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white">
+    <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white">
+    <img alt="Netlify" src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7">
+    <img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase">
+</p>
+
+## Project Overview
+
+CureConnect offers a streamlined healthcare experience with features tailored to enhance patient and doctor interactions:
+
+- **Virtual Appointments and Consultations**: Schedule secure video appointments with healthcare professionals, providing a convenient alternative to in-person visits.
+- **Medicine Purchase Integration**: Patients can seamlessly order prescription medications online, simplifying access and promoting medication adherence.
+- **Admin-Controlled Doctor Approval**: Ensures platform integrity by enabling admins to approve verified healthcare providers before joining the network.
+- **Comprehensive Patient Dashboard**: Displays upcoming appointments, previous consultations, and a quick option for medicine purchases.
+- **Doctor and Patient Management**: Enables doctors to post availability, manage their profiles, and access patient medical histories, while patients can filter doctors by specialty and location.
+
+Please find the full documentation here ➡️ [Document](https://drive.google.com/file/d/1l28oUhlWgTeJQ_jPo7-1BqcuqSQ1GXPN/view?usp=sharing)
+
+## Design Considerations
+
+#### 1. Color Palette
+
+The color palette combines **teal (green + blue)**, **white**, and **black**, chosen for their association with trustworthiness, professionalism, and clarity:
+
+- **Teal**: Evokes trust and renewal, fostering a strong connection with users.
+- **Black**: Adds sophistication and contrast, making text and key elements easily readable.
+- **White**: Provides a clean and uncluttered backdrop, enhancing focus on content and improving navigation flow.
+
+This palette not only creates a visually cohesive and appealing look but strategically enhances user engagement and trust through color psychology.
+
+![Color Pallete](/images/color-pallete.png)
+
+---
+
+#### 2. Homepage Design
+
+The **homepage** is crafted to engage visitors and build trust from the outset:
+
+- A prominent **"Get Started" button** enables quick access to core features, such as doctor search and appointment booking, adhering to the **3-Click Rule** for a seamless navigation experience.
+- Key statistics, including **registered doctors and successful appointments**, are displayed to foster reliability and user satisfaction.
+- A contrasting **white background with black text** section highlights CureConnect’s unique offerings, making features easy to read and distinct from competitors.
+
+---
+
+#### 3. Consistent Design
+
+To ensure a **consistent user experience**:
+
+- A unified header and footer layout is maintained across all pages, creating a cohesive look.
+- Familiar elements, like the **calendar and time slot ranges**, are consistently placed, enhancing usability and brand recognition.
+- Demonstrations for **appointment booking** and **adding appointments** follow the same design language, reinforcing a uniform experience throughout the site.
+
+---
+
+#### 4. Reduced Cognitive Load
+
+To minimize cognitive load and improve task efficiency:
+
+- Information is presented clearly and logically grouped, reducing unnecessary distractions.
+- The **inventory management page** is designed to make options easily accessible, allowing users to focus on tasks without confusion or overload.
+
+## Other Screenshots 📸
+
+Below are some screenshots which will give you the overall look and feel of the website
+
+### Landing page
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Flanding.png?alt=media&token=aa56c5c2-65f2-48ba-b403-30b5f2c3d08f)
+
+### Contact Us page
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fcontactus.png?alt=media&token=2e88503f-00f3-4175-b92e-32bdbedd595f)
+
+### Login page
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Flogin.png?alt=media&token=fbf40e0d-d471-4107-b20e-69caa9879e5f)
+
+### Patient dashboard
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fpatientdashboard.png?alt=media&token=ebe61b80-2540-4cd6-9776-96c0e7a083bc)
+
+### Patient books an appointment
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2FBookanappointment.png?alt=media&token=7303ab54-6cbb-4304-8550-8fee2a4179f8)
+
+### Past appointmenst
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fpastappointments.png?alt=media&token=0690f200-39e1-43da-a826-14d3fc652e42)
+
+### View prescription
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2FviewPrescription.png?alt=media&token=8ee4b234-ea56-42b5-8e00-43719db5fcc3)
+
+### Select the prescripion to buy medicine
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fbuymedicine.png?alt=media&token=bb918cca-5cc9-4799-8221-2a6e1341dfb1)
+
+### Edit the quantity of prescribed medicine
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fedit%20buy%20medicine%20list.png?alt=media&token=1fcf8c15-5dbe-4fcb-817d-351d8463ba19)
+
+### Payment information
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fpaymentdetails.png?alt=media&token=9e6e5b9b-0933-43e2-90b9-98d1ce898c57)
+
+### Manage appointments from doctor's perspective
+
+![image](https://firebasestorage.googleapis.com/v0/b/webt3-8766f.appspot.com/o/cureconnect%20demo%20images%2Fmanageappointments.png?alt=media&token=990b43af-567b-4c2d-b59d-c46f4661495e)
+
+---
+
+CureConnect is committed to simplifying healthcare access, improving patient outcomes, and fostering patient-centric digital healthcare.
 
 ## Authors
 
-* [Aniket Mhatre](an370985@dal.ca) [B00969798]
-* [Bhavya Mevawala](bh84221@dal.ca) [B00953053]
-* [Heramb Kulkarni](hr835429@dal.ca) [B00962182]
-* [Manan Mistry](manan.mistry@dal.ca) [B00948831]
-* [Parth Karkhanis](pr401159@dal.ca) [B00959176]
-* [Shubham Pawar](sh764760@dal.ca) [B00969363]
-
-
-
-## Built With
-
-* [React](https://legacy.reactjs.org/docs/getting-started.html/) - The web framework used
-* [npm](https://docs.npmjs.com//) - Dependency Management
-* [TailwindCss](https://tailwindcss.com/docs) - CSS Framework
-
-
-## Sources Used
-
-### MainContent.jsx
-
-*Lines 18 - 24*
-
-```
-<ReactTyped
-    className="md:text-3xl sm:text-4xl text-xl font-bold md:pl-2 pl-2"
-    strings={["Appointments", "Consultations", "Pharmacy"]}
-    typeSpeed={100}
-    backSpeed={120}
-    loop
-/>
-```
-
-The code above was created by adapting the code in [ReactTyped Documentation](https://www.npmjs.com/package/react-typed) as shown below: 
-
-```
-import { ReactTyped } from "react-typed";
-
-const MyComponent = () => (
-  <div>
-    <ReactTyped strings={["Here you can find anything"]} typeSpeed={40} />
-    <br />
-
-    <ReactTyped
-      strings={[
-        "Search for products",
-        "Search for categories",
-        "Search for brands",
-      ]}
-      typeSpeed={40}
-      backSpeed={50}
-      attr="placeholder"
-      loop
-    >
-      <input type="text" />
-    </ReactTyped>
-  </div>
-);
-```
-
-- The implementation of the code in the [ReactTyped Package](https://www.npmjs.com/package/react-typed) involved a comprehensive examination of the original source, ensuring a thorough understanding of its functionality and logic.
-- [ReactTyped Package](https://www.npmjs.com/package/react-typed) provides typewriter effect. This code was used in landing pages to create a sense of anticipation and engagement by gradually revealing content, thus capturing the user's attention and encouraging them to continue reading.
-- [ReactTyped Package](https://www.npmjs.com/package/react-typed)'s code was modified with different string values and different speed.
-
-### Analytics.js
-
-*Lines 42 - 53*
-
-```
-<CountUp
-    end={stat.figure}
-    suffix={stat.suffix}
-    enableScrollSpy="true"
-    delay={0}
->
-    {({ countUpRef }) => (
-    <div>
-        <span ref={countUpRef} />
-    </div>
-    )}
-</CountUp>
-```
-
-The code above was created by adapting the code in [ReactCountUp Documentation](https://www.npmjs.com/package/react-countup) as shown below: 
-
-```
-<CountUp start={0} end={100} delay={0}>
-  {({ countUpRef }) => (
-    <div>
-      <span ref={countUpRef} />
-    </div>
-  )}
-</CountUp>
-```
-
-- The code in [ReactCountUp Documentation](https://www.npmjs.com/package/react-countup) involved a comprehensive examination of the original source, ensuring a thorough understanding of its functionality and logic.
-- [ReactCountUp Documentation](https://www.npmjs.com/package/react-countup)'s Counter effect is used in landing pages to make statistics visually appealing and create a sense of urgency or highlight achievements, ultimately grabbing the user's attention and potentially driving action.
-- [ReactCountUp Documentation](https://www.npmjs.com/package/react-countup)'s Code was modified by adding extra properties suffix and enableScrollSpy to start animation once the component is visible.
-
-### Testimonial.jsx
-
-*Lines 12 - 40*
-
-```
- const settings = {
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-  };
-  function PrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <MdKeyboardArrowLeft
-        className="absolute top-[50%] start-0 z-20 flex items-center justify-center w-6 h-6 md:w-10 md:h-10 cursor-pointer hover:text-primaryColor "
-        onClick={onClick}
-      />
-    );
-  }
-
-  function NextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <MdKeyboardArrowRight
-        className="absolute top-[50%] right-0 z-20 lg:end-0 flex items-center justify-center w-6 h-6 md:w-10 md:h-10 cursor-pointer hover:text-primaryColor"
-        onClick={onClick}
-      />
-    );
-  }
-```
-
-*Lines 82 - 99*
-
-```
- <Slider {...settings}>
-    {data.map((d, index) => (
-    <div className="p-6" key={index}>
-        <div className="flex justify-center h-48">
-        <img
-            className="w-40 h-40 rounded-full hover:scale-110 transition duration-200 ease-in-out object-cover"
-            src={d.imgSrc}
-        />
-        </div>
-
-        <div className="flex flex-col justify-center items-center gap-4">
-        <p className="text-2xl font-bold ">{d.name}</p>
-        <p className=" text-md text-gray-500">{d.profile}</p>
-        <p>{d.review}</p>
-        </div>
-    </div>
-    ))}
-</Slider>
-```
-
-The code above was created by adapting the code in [ReactSlick Documentation](https://www.npmjs.com/package/react-slick) as shown below:  
-
-```
-import React from "react";
-import Slider from "react-slick";
-
-export default function SimpleSlider() {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-  return (
-    <Slider {...settings}>
-      <div>
-        <h3>1</h3>
-      </div>
-      <div>
-        <h3>2</h3>
-      </div>
-      <div>
-        <h3>3</h3>
-      </div>
-      <div>
-        <h3>4</h3>
-      </div>
-      <div>
-        <h3>5</h3>
-      </div>
-      <div>
-        <h3>6</h3>
-      </div>
-    </Slider>
-  );
-}
-```
-
-- The code in [ReactSlick Documentation](https://www.npmjs.com/package/react-slick) involved a comprehensive examination of the original source, ensuring a thorough understanding of its functionality and logic.
-- [ReactSlick Documentation](https://www.npmjs.com/package/react-slick)'s carousel effect simplifies navigating through different sections or highlights on the page, improving user experience and engagement. Moreover, its customizable features empower designers to craft engaging and interactive displays, effectively highlighting products, services.
-- [ReactSlick Documentation](https://www.npmjs.com/package/react-slick)'s Code was modified by integrating customized icons for previous arrow and next arrow navigation by overriding props of the parent component.
-
-
-
-## Acknowledgments
-
-Image Credits
-- [Animated Doctor Image](https://www.freepik.com/free-vector/doctor-examining-patient-clinic-illustrated_12557507.htm
-)
-- [Contant Us](https://storyset.com/illustration/call-center/cuate#utm_source=freepik&utm_medium=referall&utm_campaign=storiesdetail&utm_content=edit-button&utm_term=edit)
-- [Old Lady](https://www.freepik.com/free-photo/close-up-portrait-senior-woman_21081258.htm#query=old%20lady&position=15&from_view=keyword&track=ais&uuid=90c40c3f-5c46-43d4-a92c-19050d58fc2f)
-- [Doctor](https://www.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_20999942.htm#fromView=search&page=1&position=12&uuid=a60833c6-a570-47c4-96d0-a84172036d5b)
-- [Teacher](https://unsplash.com/photos/shallow-focus-photography-of-woman-outdoor-during-day-rDEOVtE7vOs)
-- [Software Engineer](https://www.freepik.com/free-photo/closeup-portrait-caucasian-happy-teacher-glasses_10586129.htm#fromView=search&page=1&position=1&uuid=e43d26de-76e6-4a52-95ff-fc2e23ead0ea)
+- [Aniket Mhatre](an370985@dal.ca)
+- [Bhavya Mevawala](bh84221@dal.ca) 
+- [Heramb Kulkarni](hr835429@dal.ca) 
+- [Manan Mistry](manan.mistry@dal.ca) 
+- [Parth Karkhanis](pr401159@dal.ca) 
+- [Shubham Pawar](sh764760@dal.ca) 
